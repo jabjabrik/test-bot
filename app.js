@@ -5,8 +5,6 @@ const BOT_TOKEN = '5401732454:AAGk7e2YYvkCwXgfAk5IHQaOmcya8UIXfmc'
 const isProduction = process.env.NODE_ENV === 'production'
 const WEBHOOK_DOMAIN = process.env.CYCLIC_URL
 
-console.log({ PORT, BOT_TOKEN, isProduction, WEBHOOK_DOMAIN });
-
 const bot = new Telegraf(BOT_TOKEN);
 
 bot.start(async ctx => {
@@ -16,12 +14,11 @@ bot.start(async ctx => {
 });
 
 if (isProduction) {
-    bot.launch({ webhook: { domain: WEBHOOK_DOMAIN, port: PORT } })
-        .then(() => console.info(`The bot ${bot.botInfo.username} is running on server`))
+    await bot.launch({ webhook: { domain: WEBHOOK_DOMAIN, port: PORT } })
+    console.info(`The bot ${bot.botInfo.username} is running on server`)
 } else {
-    bot.launch();
-    const myBot = (await bot.telegram.getMe()).username;
-    console.log(`Server has initialized bot nickname. Nick: ${myBot}`);
+    await bot.launch();
+    console.info(`The bot ${bot.botInfo.username} is running locally`)
 }
 
 
