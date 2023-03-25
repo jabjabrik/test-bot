@@ -1,7 +1,7 @@
 import { Telegraf } from 'telegraf';
 
 const PORT = process.env.PORT || 3000
-const BOT_TOKEN = '5401732454:AAGk7e2YYvkCwXgfAk5IHQaOmcya8UIXfmc_salah'
+const BOT_TOKEN = '5401732454:AAGk7e2YYvkCwXgfAk5IHQaOmcya8UIXfmc'
 const isProduction = process.env.NODE_ENV === 'production'
 const WEBHOOK_DOMAIN = process.env.CYCLIC_URL
 
@@ -16,13 +16,12 @@ bot.start(async ctx => {
 });
 
 if (isProduction) {
-    try {
-        bot.telegram.setWebhook(`${WEBHOOK_DOMAIN}/bot${BOT_TOKEN}`)
-        bot.startWebhook(`/bot${BOT_TOKEN}`, null, PORT);
-        console.log(`Bot listening on port ${PORT}`);
-    } catch (err) {
-        console.log(err.message);
-    }
+    await bot.launch({ webhook: { domain: WEBHOOK_DOMAIN, port: PORT } })
+    console.info(`The bot ${bot.botInfo.username} is running on server`);
+    // bot.telegram.setWebhook(`${WEBHOOK_DOMAIN}/bot${BOT_TOKEN}`)
+    // bot.startWebhook(`/bot${BOT_TOKEN}`, null, PORT);
+    // console.log(`Bot listening on port ${PORT}`);
+
 } else {
     bot.launch();
     const myBot = (await bot.telegram.getMe()).username;
