@@ -3,7 +3,7 @@ import { Telegraf } from 'telegraf';
 const PORT = process.env.PORT || 3000
 const BOT_TOKEN = '5401732454:AAGk7e2YYvkCwXgfAk5IHQaOmcya8UIXfmc'
 const isProduction = process.env.NODE_ENV === 'production'
-const WEBHOOK_DOMAIN = process.env.WEBHOOK_DOMAIN
+const WEBHOOK_DOMAIN = process.env.CYCLIC_URL
 
 console.log({ PORT, BOT_TOKEN, isProduction, WEBHOOK_DOMAIN });
 
