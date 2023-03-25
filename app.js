@@ -16,15 +16,23 @@ bot.start(async ctx => {
 });
 
 if (isProduction) {
-    await bot.launch({ webhook: { domain: WEBHOOK_DOMAIN, port: PORT } })
-    console.info(`The bot ${bot.botInfo.username} is running on server`);
-    // bot.telegram.setWebhook(`${WEBHOOK_DOMAIN}/bot${BOT_TOKEN}`)
-    // bot.startWebhook(`/bot${BOT_TOKEN}`, null, PORT);
-    // console.log(`Bot listening on port ${PORT}`);
-
+    bot.launch({ webhook: { domain: WEBHOOK_DOMAIN, port: PORT } })
+        .then(() => console.info(`The bot ${bot.botInfo.username} is running on server`))
 } else {
     bot.launch();
     const myBot = (await bot.telegram.getMe()).username;
     console.log(`Server has initialized bot nickname. Nick: ${myBot}`);
 }
+
+
 // https://api.telegram.org/bot5401732454:AAGk7e2YYvkCwXgfAk5IHQaOmcya8UIXfmc/setWebhook?url=https://real-tan-moose-hem.cyclic.app
+
+
+// To set webhook –
+// https://api.telegram.org/bot5401732454:AAGk7e2YYvkCwXgfAk5IHQaOmcya8UIXfmc/setWebhook?url=https://teal-glamorous-fossa.cyclic.app&drop_pending_updates=true
+
+// To delete webhook –
+// https://api.telegram.org/bot5401732454:AAGk7e2YYvkCwXgfAk5IHQaOmcya8UIXfmc/deleteWebhook
+
+// Get webhook information –
+// https://api.telegram.org/bot5401732454:AAGk7e2YYvkCwXgfAk5IHQaOmcya8UIXfmc/getWebhookInfo
