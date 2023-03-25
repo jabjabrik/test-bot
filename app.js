@@ -9,7 +9,7 @@ console.log({ PORT, BOT_TOKEN, isProduction, WEBHOOK_DOMAIN });
 
 const bot = new Telegraf(BOT_TOKEN);
 
-bot.start(async (ctx) => {
+bot.start(async ctx => {
     const { id } = ctx.chat;
     const { first_name } = ctx.chat;
     bot.telegram.sendMessage(id, first_name);
@@ -23,3 +23,4 @@ if (isProduction) {
     const myBot = (await bot.telegram.getMe()).username;
     console.log(`Server has initialized bot nickname. Nick: ${myBot}`);
 }
+// https://api.telegram.org/bot5401732454:AAGk7e2YYvkCwXgfAk5IHQaOmcya8UIXfmc/setWebhook?url=https://real-tan-moose-hem.cyclic.app
