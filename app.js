@@ -15,7 +15,7 @@ bot.start(async ctx => {
 
 if (isProduction) {
     await bot.launch({ webhook: { domain: WEBHOOK_DOMAIN, port: PORT } })
-    console.info(`The bot ${bot.botInfo.username} is running on server`)
+    console.info(`The bot ${bot.botInfo.username} is running on server port ${PORT}`)
 } else {
     await bot.launch();
     console.info(`The bot ${bot.botInfo.username} is running locally`)
